@@ -1,36 +1,46 @@
 <?php
-Class Team {          
+class Team {          
     # Attributs
-    private int $idTeam;
-    private string $name;
-    private string $dateCreation;
-    private array $players;
+    private int $_idTeam;
+    private string $_name;
+    private string $_dateCreation;
+    private Pays $_pays;
+    private array $_players;
 
     # Constructeur
-    public function __construct($idTeam, $name, $dateCreation){
+    public function __construct($idTeam, $name, $dateCreation, $pays){
         $this->_idTeam = $idTeam;             
         $this->_name = $name;              
-        $this->_players = [];    
+        $this->_dateCreation = $dateCreation;
+        $this->_pays = $pays;
+        $this->_players = [];
+        $pays->addTeam($this);
     }
 
     # toString
     public function __toString() {
-        return "{$this->_idTeam}<br>
-        {$this->_name}<br>";
+        return "{$this->_name} ({$this->_pays->getName()} {$this->_dateCreation})";
     }
 
-    #Getter
-
+    # Getters
     public function getIdTeam() {
-        return $this->_idHotel;
+        return $this->_idTeam;
     }
 
     public function getName() {
         return $this->_name;
     }
 
-    public function getOkayer() {
-        return $this->_player;
+    public function getDateCreation() {
+        return $this->_dateCreation;
+    }
+
+    public function getPays() {
+        return $this->_pays;
+    }
+
+    public function getPlayers() {
+        return $this->_players;
     }
 
     # Setters
@@ -42,7 +52,11 @@ Class Team {
         $this->_name = $name;
     }
 
-    public function addPlayers($player){
+    public function setDateCreation($dateCreation) {
+        $this->_dateCreation = $dateCreation;
+    }
+
+    public function addPlayer($player){
         $this->_players[] = $player; 
     }
 

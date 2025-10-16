@@ -1,5 +1,5 @@
 <?php
-Class Pays {          
+class Pays {          
     # Attributs 
     private int $_idPays;
     private string $_name;
@@ -14,13 +14,12 @@ Class Pays {
 
     # toString
     public function __toString() {
-        return "{$this->_idPays}<br>
-        {$this->_name}<br>";
+        return "{$this->_name}";
     }
 
     # Getters
     public function getIdPays() {
-        return $this->idPays;
+        return $this->_idPays;
     }
 
     public function getName() {
@@ -40,8 +39,16 @@ Class Pays {
         $this->_name = $name;
     }
 
-    public function addTeam($team){
-        $this->_teams[] = $team; 
+    public function addTeam($team) {
+        $this->_teams[] = $team;
     }
 
+    # Affichage des équipes du pays
+    public function listeTeams() {
+        echo "<ul>";
+        foreach ($this->_teams as $team) {
+            echo "<li>{$team->getName()}</li>";
+        }
+        echo "</ul>";
+    }
 }
