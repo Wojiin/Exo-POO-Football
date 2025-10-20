@@ -7,34 +7,32 @@
   font-family: "Poppins";
 }
 
-h1, h2 {
-    text-align: center;
+h1,
+h2 {
+  text-align: center;
 }
-h3{
-    color: aliceblue;
+h3 {
+  color: aliceblue;
 }
 .cardcontainer {
-    display : flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    
-    
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 .uk-card {
-height: 250px;
-width: 170px;
-padding: 10px 20px;
-border-radius: 10px;
-display: flex;
-flex-direction: column;
+  height: 250px;
+  width: 250px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 }
-.country{
-    background-color:  rgb(233, 101, 101);
-    color: aliceblue;
-    
+.country {
+  background-color: rgb(233, 101, 101);
+  color: aliceblue;
 }
 .team {
-    background-color: rgb(73, 44, 201);
-    color: aliceblue;
+  background-color: rgb(73, 44, 201);
+  color: aliceblue;
 }

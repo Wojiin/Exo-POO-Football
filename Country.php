@@ -1,40 +1,40 @@
 <?php
-
 class Country {
-    /* Propriétés */
     private string $_countryName;
     private array $_teams;
 
-    /* Méthode magique : Constructor */
-    public function __construct($countryName){
+    public function __construct(string $countryName){
         $this->_countryName = $countryName;
         $this->_teams = [];
     }
 
-    /* Getter et Setter */
-    /* Nom de l'équipe */
     public function getCountryName() {
-        return $this->_countryName;
-    }
-    public function setCountryName() {
-        $this->_countryName = $countryName;
+        return $this->_countryName; 
     }
 
-    /* Méthodes */
-    public function addTeam(Team $team){ 
-        $this->_teams[] = $team;
+    public function addTeam(Team $team){$this->_teams[] = $team; 
     }
+    public function getTeams(){ return $this->_teams; }
 
-    public function showTeams() {
-        $result = "";
-        foreach($this->_teams as $team) {
-            $result .= $team . "<br>";
+    // Affiche toutes les équipes d’un pays
+    public function displayTeams() {
+        echo "<div class='uk-card uk-card-overlay country'>";
+        echo "<h3>{$this->_countryName}</h3>";
+
+        if (count($this->_teams) == 0) {
+            echo "<p>Aucune équipe enregistrée.</p>";
+        } else {
+            echo "<ul>";
+            foreach ($this->_teams as $team) {
+                echo "<li>{$team->getTeamName()} ({$team->getCreationDate()})</li>";
+            }
+            echo "</ul>";
         }
-        return $result;
+
+        echo "</div>";
     }
 
-    /* Méthode magique : toString */
-    public function __toString(){
-        return "{$this->_countryName}";
+    public function __toString() {
+        return $this->_countryName;
     }
 }

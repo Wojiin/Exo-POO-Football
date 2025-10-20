@@ -1,14 +1,11 @@
 <?php
-
 class Team {
-    /* Propriétés */
     private string $_teamName;
     private string $_creationDate;
     private Country $_country;
     private array $_recrutings;
 
-    /* Méthode magique : Constructor */
-    public function __construct($teamName, $creationDate, $country){
+    public function __construct(string $teamName, string $creationDate, Country $country){
         $this->_teamName = $teamName;
         $this->_creationDate = $creationDate;
         $this->_country = $country;
@@ -16,48 +13,48 @@ class Team {
         $country->addTeam($this);
     }
 
-    /* Getter et Setter */
-    /* Nom de l'équipe */
     public function getTeamName() {
-        return $this->_teamName;
-    }
-    public function setTeamName() {
-        $this->_teamName = $teamName;
-    }
-
-    /* Date de création de l'équipe */
-    public function getCreationDate() {
-        return $this->_creationDate;
-    }
-    public function setCreationDate() {
-        $this->_creationDate = $creationDate;
-    }
-
-    /* Pays d'appartenance */
-    public function getCountry() {
-        return $this->_country;
-    }
-    public function setCountry() {
-        $this->_country = $country;
-    }
-
-    /* Méthodes */
-    public function addRecruting(Recruting $recruting) {
-        $this->_recrutings[] = $recruting;
-    }
-
-    public function playersRecruting() {
-        $resultat = "";
-        foreach($this->_recrutings as $recruting) {
-
-            $resultat .= $recruting->getPlayer() . "";
-
+         return $this->_teamName; 
         }
-             return "" . $resultat . "<br>";
+
+    public function getCreationDate() {
+         return $this->_creationDate; 
+        }
+
+    public function getCountry() {
+         return $this->_country; 
+        }
+
+    public function addRecruting(Recruting $recruting) {
+         $this->_recrutings[] = $recruting; 
+        }
+
+    public function getRecrutings() {
+         return $this->_recrutings; 
     }
 
-    /* Méthode magique : toString */
-    public function __toString(){
-        return "{$this->_teamName}({$this->_creationDate})";
+    // Affiche tous les joueurs d'une équipe
+    public function displayPlayers() {
+        echo "<div class='uk-card uk-card-overlay team'>";
+        echo "<h3>{$this->_teamName}</h3>";
+        echo "<p>{$this->_country->getCountryName()} - Créé en {$this->_creationDate}</p>";
+
+        if (count($this->_recrutings) == 0) {
+            echo "<p>Aucun joueur recruté.</p>";
+        } else {
+            echo "<ul>";
+            foreach ($this->_recrutings as $recruting) {
+                $player = $recruting->getPlayer();
+                $age = $player->calculAge();
+                echo "<li>{$player->getFirstName()} {$player->getLastName()} ({$age} ans, {$player->getCountry()->getCountryName()})</li>";
+            }
+            echo "</ul>";
+        }
+
+        echo "</div>";
+    }
+
+    public function __toString() {
+        return "{$this->_teamName} ({$this->_creationDate})";
     }
 }
